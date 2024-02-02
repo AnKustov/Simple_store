@@ -1,0 +1,21 @@
+{% load static %}
+
+<footer style="background-color: #181818;">
+    <div class="container-fluid">
+        <h6 style="color: #FFFFFF; text-align: center; text-decoration: underline;">Все категории товаров</h6>
+
+        <div class="category-grid" style="display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;">
+            {% for category in categories %}
+            <div class="category-item" style="padding: 5px;">
+                <a href="{% url 'category_detail' category.slug %}" class="text-decoration-none" style="color: #FFFFFF; text-decoration: none;">
+                    {{ category.name }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr style="border-top: 1px solid #FF8C00; margin: 0;">
+</footer>
+

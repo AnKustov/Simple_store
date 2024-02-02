@@ -1,0 +1,89 @@
+{% load static %}
+
+<footer id="custom-footer" style="background-color: #181818;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <address style="color: #FFFFFF;">
+                    <a class="navbar-brand" href="{% url 'main' %}">
+                        <div class="logo-container">
+                            <img src="/media/design_images/logo.png" alt="Logo" class="logo-image">
+                        </div>
+                    </a><br>
+                    123 Улица, Город<br>
+                    Україна, 00000<br>
+                    <title="Телефон">Тел: (123) 456-7890<br>
+                    <title="Телефон">Тел: (123) 456-7890<br>
+
+                    <img src="/media/design_images/viber.png" alt="Viber" width="auto" height="24px">
+                    <img src="/media/design_images/telegram.png" alt="Telegram" width="auto" height="24px">
+                    <img src="/media/design_images/whatsapp.png" alt="WhatsApp" width="auto" height="24px">
+                    <img src="/media/design_images/skype.png" alt="Skype" width="auto" height="24px">
+
+                </address>
+            </div>
+            <div class="col-md-4">
+                <h6 style="color: #FFFFFF; text-align: center;">Чем оплатить</h6>
+                <ul class="list-unstyled d-flex align-items-center">
+                    <li class="me-2">
+                        <img src="/media/design_images/mastercard.png" alt="mastercard" width="auto" height="35px" style="background: transparent;">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/visa.png" alt="visa" width="auto" height="45px">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/google-pay.png" alt="google-pay" width="auto" height="35px">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/applepay.png" alt="applepay" width="auto" height="35px">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/payoneer.png" alt="payoneer" width="auto" height="35px">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/privat24.png" alt="privat24" width="auto" height="35px">
+                    </li>
+                </ul>
+                <h6 style="color: #FFFFFF; text-align: center;">Как доставим</h6>
+                <ul class="list-unstyled d-flex align-items-center">
+                    <li class="me-2">
+                        <img src="/media/design_images/Nova_Poshta.png" alt="Nova_Poshta" width="auto" height="35px" style="background: transparent;">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/Ukrposhta.png" alt="Ukrposhta" width="auto" height="35px">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/Meest.png" alt="Meest" width="auto" height="35px">
+                    </li>
+                    <li class="me-2">
+                        <img src="/media/design_images/glovo.png" alt="glovo" width="auto" height="35px">
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-md-4">
+                <ul class="list-unstyled" style="padding-left: 100px;">
+                    <li><a class="text-light" href="{% url 'about_project' %}">Про проект</a></li>
+                    <li><a class="text-light" href="{% url 'post_list' %}">Статті</a></li>
+                    <li><a class="text-light" href="{% url 'feedback' %}">Зворотній зв'язок</a></li>
+                    <li><a class="text-light" href="#">Доставка та оплата</a></li>
+                    <li><a class="text-light" href="#">Гарантія</a></li>
+                    <li><a class="text-light" href="#">Наші магазини</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr style="border-top: 1px solid #FF8C00; margin: 0;">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.1/umd/popper.min.js" integrity="sha384-d7I6tx-8if2dJAIj8tFv9mIBI5W1i6Fq0mQQ3T6poRhhApK/C2Gj7f4Blxue5CEIj9" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/lightbox.min.js' %}"></script>
+    <script src="{% static 'js/last_post.js' %}"></script>
+    <script src="{% static 'js/brand_carousel.js' %}"></script>
+    <script src="{% static 'js/category_list.js' %}"></script>
+    <script src="{% static 'js/card_image.js' %}"></script>
+
+</footer>

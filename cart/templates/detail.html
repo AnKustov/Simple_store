@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h4 class="text-center" style="text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);">Ваша корзина</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered custom-shadow p-3 mb-5 bg-body rounded" style="background-color: #F5F5F5 !important;">
+            <thead style="background-color: #F5F5F5;">
+                <tr>
+                    <th class="col-1">Артикул</th>
+                    <th class="col-4">Товар</th>
+                    <th class="col-2">Цена</th>
+                    <th class="col-2">Количество</th>
+                    <th class="col-2">Общая стоимость</th>
+                    <th class="col-2">Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td>{{ item.product.article }}</td>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            <form method="post" action="{% url 'cart:cart_add' item.product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control" style="border-radius: 0% !important;">
+                                    <div class="input-group-append">
+                                        <input type="submit" value="Обновить" class="btn btn-custom" style="width: 100px !important; border-radius: 0% !important;">
+                                    </div>
+                                    <input type="hidden" name="update" value="True">
+                                </div>
+                            </form>
+                        </td>
+                        <td>{{ item.total_price }}</td>
+                        <td>
+                            <a href="{% url 'cart:cart_remove' item.product.id %}" class="developer-info text-danger text-decoration-none"><img src="/media/icons/icons8-remove-48.png" alt="Удалить"></a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <p class="developer-info text-dark"><strong>Общая стоимость: </strong>&nbsp;</p>
+        <p class="developer-info" style="color: #4B0082;"><strong> {{ cart.get_total_price }} грн</strong></p>
+    </div>
+    
+    <div class="d-flex justify-content-end">
+        <a href="{% url 'main' %}" class="btn btn-light custom-shadow p-1 mb-3" style="border-radius: 0% !important;">Продолжить покупки</a>
+        <a href="{% url 'orders:order_create' %}" class="btn custom-shadow p-1 mb-3" style="border-radius: 0% !important; background-color: #FF8C00; color: #FFFFFF;">Оформить заказ</a>
+    </div>    
+{% endblock %}

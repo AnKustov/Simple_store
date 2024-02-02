@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block content %}
+  <div class="module">
+    <h1>Импорт товаров из CSV файла</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="csv_file">Выберите CSV файл:</label>
+      <input type="file" name="csv_file" required>
+      <button type="submit" class="button">Импортировать</button>
+    </form>
+  </div>
+{% endblock %}
+

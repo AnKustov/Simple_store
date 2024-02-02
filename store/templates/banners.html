@@ -1,0 +1,26 @@
+{% block content %}
+
+<div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-inner banner-slide">
+      <div class="carousel-item banner-slide active">
+        <img src="/media/banners/banner_1.jpg" class="d-block w-100" alt="Баннер 1">
+      </div>
+      <div class="carousel-item banner-slide">
+        <img src="/media/banners/banner_3.jpg" class="d-block w-100" alt="Баннер 2">
+      </div>
+    </div>
+  
+    <!-- Навигация для карусели (стрелки вперед/назад) -->
+    <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Предыдущий</span>
+    </a>
+    <a class="carousel-control-next" href="#bannerCarousel" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Следующий</span>
+    </a>
+</div>
+
+{% endblock %}
+
+  

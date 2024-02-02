@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4 class="text-center" style="margin-top: 20px;">Детали заказа №{{ order.order_number }}</h4>
+    
+    <table class="table custom-shadow p-3 mb-5 bg-body rounded">
+        <thead>
+            <tr style="background-color: #F5F5F5; text-align: center">
+                <th>Артикул</th>
+                <th>Наименование товара</th>
+                <th>Количество</th>
+                <th>Стоимость за единицу</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+                <tr style="background-color: #F5F5F5;">
+                    <td>{{ item.product.article }}</td>
+                    <td><a href="{% url 'product_detail' item.product.slug %}" style="text-decoration: none; color: #4B0082;">{{ item.product.name }}</a></td>
+                    <td style="text-align: right;">{{ item.quantity }}</td>
+                    <td style="text-align: right;">{{ item.product.price }} грн</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="d-flex justify-content-center">
+        <p class="developer-info text-dark"><strong>Общая сумма заказа: </strong>&nbsp;</p>
+        <p class="developer-info" style="color: #4B0082;"><strong>{{ order_total }} грн</strong></p>
+    </div>
+{% endblock %}

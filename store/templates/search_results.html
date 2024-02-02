@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Результаты поиска{% endblock %}
+
+{% block content %}
+    <h6>Результаты поиска для "{{ query }}"</h6>
+    <ul>
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-2 col-md-4 col-6 mb-4">
+                    {% include 'product_card.html' %}
+                </div>
+            {% empty %}
+                <p>Ничего не найдено.</p>
+            {% endfor %}
+        </div>
+    </ul>
+
+    {% if products %}
+    <div class="pagination-container d-flex justify-content-center">
+        <nav aria-label="Страницы">
+            <ul class="pagination">
+                {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link text-custom-color" href="?page=1" aria-label="Первая страница"> << </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-custom-color" href="?page={{ products.previous_page_number }}" aria-label="Предыдущая страница"> < </a>
+                </li>
+                {% endif %}
+
+                {% for page in products.paginator.page_range %}
+                    <li class="page-item {% if page == products.number %}active{% endif %}">
+                        <a class="page-link {% if page == products.number %}custom-active-page{% else %}text-custom-color {% endif %}" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endfor %}
+                
+                {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link text-custom-color" href="?page={{ products.next_page_number }}" aria-label="Следующая страница"> > </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-custom-color" href="?page={{ products.paginator.num_pages }}" aria-label="Последняя страница"> >> </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+
+    
+{% endblock %}

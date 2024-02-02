@@ -1,0 +1,17 @@
+<div class="card custom-shadow p-3 mb-5 bg-body rounded" style="height: 400px; border-radius: 0% !important;">
+    {% with product_images=product.productimage_set.all %}
+        {% if product_images %}
+            {% with random_image=product_images|random %}
+                <img src="{{ random_image.image.url }}" class="card-img-top img-fluid" alt="{{ product.name }} Image" style="height: 150px; object-fit: cover;">
+            {% endwith %}
+        {% else %}
+            <img src="/media/design_images/no_image.jpg" class="card-img-top img-fluid" alt="Placeholder Image" style="height: 150px; object-fit: cover;">
+        {% endif %}
+    {% endwith %}
+    <div class="card-body" style="text-align: center;">
+        <h6 class="card-title"><a href="{% url 'product_detail' product.slug %}" 
+            class="text-decoration-none text-custom-color">{{ product.name }}</a></h6>
+        <p class="card-text" style="max-width: 100%;">{{ product.description|truncatechars:100|safe }}</p>
+        <p class="card-text custom-shadow" style="position: absolute; bottom: 10px;  left: 0; right: 0; text-align: center !important; width: 150px !important; margin: 0 auto !important; color: #FFFFFF; background-color: #FF8C00;"><strong>{{ product.price }} грн</strong></p>    
+    </div>
+</div>

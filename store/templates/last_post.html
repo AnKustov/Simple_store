@@ -1,0 +1,30 @@
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row justify-content-center"> 
+        <div class="col-md-12 text-center"> 
+            <h4>Последние статьи</h4>
+        </div>
+    </div>
+    <div class="row">
+        {% for post in latest_posts %}
+            {% if forloop.counter <= 3 %}
+            <div class="col-md-4 mb-4">
+                <div class="card article article_blog custom-shadow p-3 mb-5 bg-body rounded">
+                    {% if post.photo %}
+                    <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="card-img-top" style="height: 300px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'post_detail' post.id %}" class="text-decoration-none text-custom-color">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ post.content|truncatechars:150|safe }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% block content %}
+<html>
+<head>
+    <title>Список брендов</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center"> 
+            <div class="col-md-12 text-center"> 
+                <h4>Наши бренды</h4>
+            </div>
+        </div>
+        <div class="row">
+            {% for brand in brands %}
+                <div class="col-md-2 mb-4">
+                    <a href="{% url 'brand_detail' brand.id %}" class="text-decoration-none text-dark">
+                        {% if brand.image %}
+                            <img src="{{ brand.image.url }}" alt="{{ brand.name }} Image" class="img-fluid">
+                        {% endif %}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h4 class="text-center">Оформление заказа</h4>
+            <div class="order-info">
+                <table class="table custom-shadow" style="background-color: #F5F5F5;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Наименование</th>
+                            <th scope="col" class="text-center">Количество</th>
+                            <th scope="col" class="text-center">Сумма</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td class="text-center">{{ item.quantity }}</td>
+                                <td class="text-center">{{ item.total_price }} грн</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>  
+            
+            <div class="d-flex justify-content-end">
+                <p class="developer-info text-dark"><strong>Общая стоимость: </strong>&nbsp;</p>
+                <p class="developer-info" style="color: #4B0082;"><strong> {{ cart.get_total_price }} грн</strong></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <form action="." method="post" class="order-form row container-fluid p-5 mt-1">
+                {% csrf_token %}
+                    <div class="mb-0">
+                        <label for="{{ form.first_name.id_for_label }}" class="d-block">Имя:</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="mb-0">
+                        <label for="{{ form.last_name.id_for_label }}" class="d-block">Фамилия:</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div class="mb-0">
+                        <label for="{{ form.email.id_for_label }}" class="d-block">Email:</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="mb-0">
+                        <label for="{{ form.address.id_for_label }}" class="d-block">Адрес:</label>
+                        {{ form.address }}
+                    </div>
+                    <div class="mb-0">
+                        <label for="{{ form.phone_number.id_for_label }}" class="d-block">Телефон (в формате +38):</label>
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="mb-0">
+                        <label for="{{ form.city.id_for_label }}" class="d-block">Город:</label>
+                        {{ form.city }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.city.id_for_label }}" class="d-block">Способ доставки:</label>
+                        {{ form.delivery }}
+                    </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <input type="submit" value="Оформить" class="btn shadow p-1 mb-3" style="background-color: #FF8C00; border-radius: 0%; color: #FFFFFF;">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
+    {% endblock %}

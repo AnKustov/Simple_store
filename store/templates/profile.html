@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h4 class="text-center" style="margin-top: 20px;">Личный кабинет</h4>
+
+    <button type="button" class="btn shadow p-1 mb-3" style="background-color: #FF8C00;">
+        <a href="{% url 'change_password' %}" class="text-white text-decoration-none">Поменять пароль</a>
+    </button>
+
+    <table class="table custom-shadow p-3 mb-5 bg-body rounded">
+        <thead>
+            <tr style="background-color: #F5F5F5;">
+                <th>Номер заказа</th>
+                <th>Статус</th>
+                <th>Дата создания</th>
+                <th>Сумма заказа</th>
+                <th>Детали</th>
+            </tr>
+        </thead>
+        <tbody style="background-color: #F5F5F5;">
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.order_number }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.created }}</td>
+                    <td>
+                        Общая стоимость заказа: {{ order.order_total }} грн
+                    </td>
+                    <td>
+                        <a href="{% url 'order_detail' order.id %}" class="text-decoration-none" style="color: #4B0082;"><strong>Посмотреть детали</strong></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-center">
+        <p class="developer-info text-black"><strong>Общая сумма всех заказов: </strong>&nbsp;</p>
+        <p class="developer-info font-weight-bold" style="color: #4B0082;"><strong> {{ total_order_amount }} грн</strong></p>
+    </div>
+
+{% endblock %}
+

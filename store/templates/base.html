@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/png" href="/media/design_images/favicon.png">
+</head>
+<body>
+    {% include 'header.html' %}
+       
+    <div class="page-wrapper">
+        <div class="content">
+            <div class="spinner-border text-warning" role="status" style="display: none;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    
+    {% include 'footer_category_list.html' %}
+
+    {% include 'footer.html' %}
+
+    {% include 'footer_dev.html' %}
+    
+</body>
+</html>
+
+<script>
+    window.addEventListener('load', function () {
+        var loader = document.getElementById('loader');
+        loader.style.display = 'none';
+    });
+</script>
+
+

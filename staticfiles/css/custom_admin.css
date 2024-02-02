@@ -1,0 +1,38 @@
+#branding a, #branding a:visited, #branding a:hover {
+    color: #ec0303 !important;
+}
+
+.btn-secondary {
+    color: #000000 !important;
+    background-color: #dc3545 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    width: 100%; 
+}
+
+.btn-primary {
+    color: #FFFFFF !important;
+    background-color: #663399 !important;
+    width: 100%; 
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+ul li {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    background-color: transparent !important;
+    color: #000000 !important;
+}
+
+a:hover {
+    background-color: transparent !important;
+    color: #000000 !important;
+}
+
+.object-tools a.addlink:before {
+    color: #000000 !important;
+}

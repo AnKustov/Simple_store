@@ -1,0 +1,65 @@
+{% load i18n %}
+
+<div class="dropdown">
+  <form method="GET" action="" class="dropdown-form" id="categoryFilterForm">
+    <button class="btn" style="background-color: #663399; color: #FFFFFF;" type="button" id="categoryDropdown" data-bs-toggle="dropdown" data-bs-auto-close="false">
+      Выбрать категории
+    </button>
+    <ul class="dropdown-menu" style="box-shadow: 1px 1px 3px rgba(102, 51, 153, 1);" aria-labelledby="categoryDropdown">
+      {% for category in categories %}
+        <li>
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="categories" value="{{ category.id }}" {% if category.id|stringformat:"s" in request.GET.categories %}checked{% endif %}>
+            {{ category.name }}
+          </label>
+        </li>
+      {% endfor %}
+      <li>
+        <button type="button" class="btn btn-link" id="applyFilterButton" style="color: #006400;">Применить</button>
+      </li>
+      <li>
+        <a href="?">
+          <button type="button" class="btn btn-link" style="color: #FF0000;">Очистить</button>
+        </a>
+      </li>
+    </ul>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const applyFilterButton = document.getElementById('applyFilterButton');
+  applyFilterButton.addEventListener('click', function() {
+    const form = document.getElementById('categoryFilterForm');
+    form.submit();
+  });
+});
+</script>
+
+<style>
+  .dropdown-menu {
+    width: 100%;
+    color: #000000;
+  }
+
+  .dropdown-menu a, button[type="button"] {
+    width: 100%;
+    text-decoration: none !important;
+  }
+
+  a[href="?"] {
+      background-color: transparent;
+      text-decoration: none;
+  }
+
+  a[href="?"]:hover {
+      background-color: transparent;
+  }
+
+  .btn:focus,
+  .btn:active {
+    outline: none;
+    box-shadow: none;
+}
+
+</style>

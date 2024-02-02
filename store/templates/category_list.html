@@ -1,0 +1,41 @@
+{% block content %}
+<html>
+<head>
+    <title>Список категорий</title>
+</head>
+<body>
+<ul class="list-group d-inline-block float-left custom-shadow bg-body rounded w-100 rounded-0">
+    {% for category in categories %}
+        <li class="list-group-item text-wrap full-width" style="padding-left: 0; padding-right: 0; border: none;">
+            {% if category.subcategories.exists %}
+                <div class="accordion" id="categoryAccordion{{ category.id }}">
+                    <a class="text-decoration-none category-link" style="color: #4B0082;" role="button" data-bs-toggle="collapse" href="#collapseCategory{{ category.id }}" aria-expanded="false" aria-controls="collapseCategory{{ category.id }}">
+                        {{ category.name }}
+                    </a>
+                    <div id="collapseCategory{{ category.id }}" class="collapse" style="background-color: #F5F5F5;">
+                        <div class="d-inline-block">
+                            <ul class="list-group list-group-flush"> 
+                                {% for subcategory in category.subcategories.all %}
+                                    <li class="list-group-item"
+                                    class="collapse" style="background-color: #F5F5F5;">
+                                        <a href="{% url 'subcategory_detail' subcategory.slug %}" class="text-decoration-none" style="color: #4B0082;">
+                                            {{ subcategory.name }}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'category_detail' category.slug %}" class="text-decoration-none w-100 category-link" style="color: #4B0082;">
+                    {{ category.name }}
+                </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% block content %}
+    <div class="row justify-content-center"> 
+        <div class="col-md-12 text-center"> 
+            <h4>Случайные товары</h4>
+        </div>
+    </div>
+    <div class="row">
+        {% for product in random_products|slice:":6" %}
+            <div class="col-lg-2 col-md-4 col-6 mb-4">
+                {% include 'product_card.html' %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

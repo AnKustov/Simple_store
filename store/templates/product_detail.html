@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+<head>
+    <title>{{ product.name }} - Детали товара</title>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-lg-4">
+            {% with product_images=product.productimage_set.all %}
+                {% if product_images %}
+                    {% with random_image=product_images|random %}
+                        <img src="{{ random_image.image.url }}" alt="{{ product.name }} Image" class="img-fluid main-product-image">
+                    {% endwith %}
+                {% else %}
+                    <img src="/media/design_images/no_image.jpg" alt="Placeholder Image" class="img-fluid main-product-image">
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <div class="col-lg-6">
+            <h4 style="text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);">{{ product.name }}</h4>
+            <p>Артикул: <strong><span class="developer-info" style="color: #4B0082;">{{ product.article }}</span></strong></p>
+            <p>Описание: {{ product.description|safe }}</p>
+            <p>Цена: {{ product.price }} грн</p>
+            <p>Бренд: <a href="{% url 'brand_detail' product.brand.id %}" class="text-decoration-none" style="color: #4B0082;">{{ product.brand }}</a></p>
+
+            <div class="input-group">
+                <form method="post" action="{% url 'cart:cart_add' product.id %}" style="display: flex; align-items: center;">
+                    {% csrf_token %}
+                    <label for="{{ cart_product_form.quantity.id_for_label }}">Количество:</label> 
+                    <div class="unique-label">
+                        {{ cart_product_form.quantity }}
+                    </div>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn shadow p-1 mb-3 unique-button">В корзину</button>
+                    </div>
+                </form> 
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="row mt-4" style="margin-left: -50px; margin-right: -50px; background-color: #F5F5F5;">
+        {% for image in product.productimage_set.all %}
+            <div class="col-md-2 mt-5 mb-5 product-image-thumbnail">
+                <img src="{{ image.image.url }}" alt="{{ product.name }} Image" class="img-fluid">
+            </div>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>
+{% endblock %}
+
+
+
